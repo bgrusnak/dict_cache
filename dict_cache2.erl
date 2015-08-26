@@ -1,10 +1,10 @@
 -module(dict_cache2).
 -behaviour(gen_server).
--export([start/0, get_value/1, set_value/2]).
--export([init/1, handle_call/3]).
+-export([start_link/0, get_value/1, set_value/2]).
+-export([init/1, handle_call/3, terminate/2]).
 
-start() ->
-  gen_server:start({local, ?MODULE}, ?MODULE, [], []).
+start_link() ->
+  gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 init([]) ->
   {ok, dict:new()}.
@@ -21,3 +21,6 @@ set_value(Key, Value) ->
 
 get_value(Key) ->
   gen_server:call(?MODULE, {get_value, Key}).
+
+terminate(_Reason, _State) ->
+	ok.
