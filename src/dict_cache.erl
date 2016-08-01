@@ -1,4 +1,4 @@
--module(dict_cache2).
+-module(dict_cache).
 -behaviour(gen_server).
 -export([start_link/0, get_value/1, set_value/2]).
 -export([init/1, handle_call/3, terminate/2]).
